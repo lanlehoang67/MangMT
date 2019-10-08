@@ -1,0 +1,22 @@
+class NoSync extends Thread{
+	 NoSync a = new NoSync();
+	 public void Run() {
+		 a.Display();
+	 }
+	 public static void main(String[] args) {
+			NoSync a = new NoSync();
+			NoSync b = new NoSync();
+		}
+}
+ public class Sync extends Thread {
+	 public static synchronized void Display() {
+		 for(int i =0;i<10;i++) {
+			 System.out.println(i);
+			 try {
+				 Thread.sleep(1000);
+			 }
+			 catch(Exception e) {}
+		 }
+	 }
+		
+	}

@@ -1,0 +1,6 @@
+import java.io.*;
+public class ThreadSync {
+}
+public class NoSync{
+	
+}

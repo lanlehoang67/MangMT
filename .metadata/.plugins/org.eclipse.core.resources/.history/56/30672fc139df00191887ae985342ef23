@@ -1,0 +1,9 @@
+import java.io.*;
+public class ThreadSync extends Thread {
+	public static void main(String[] args) {
+	
+}
+}
+ class NoSync{
+	
+}

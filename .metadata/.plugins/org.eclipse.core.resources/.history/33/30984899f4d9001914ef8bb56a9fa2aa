@@ -1,0 +1,36 @@
+import java.io.*;
+import java.net.*;
+public class Client {
+	private Socket socket = null;
+	private DataInputStream in = null;
+	private DataInputStream input = null;
+	private DataOutputStream out = null;
+	public Client(String address, int port) {
+		try {
+			socket = new Socket(address,port);
+			in = new DataInputStream(socket.getInputStream());
+			input = new DataInputStream(System.in);
+			out = new DataOutputStream(socket.getOutputStream());
+			String message = "";
+			String line = "";
+			while(!message.equals("end")) {
+				try {
+					message = in.readUTF();
+					System.out.println("tin nhan tu server: "+message);
+					line = input.readLine();
+					out.writeUTF(line);
+				}
+				catch(IOException e) {
+					System.out.println(e);
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e);
+		}
+		
+	}
+	public static void main(String args[]) {
+		Client client = new Client("127.0.0.1",5000);
+	}
+}

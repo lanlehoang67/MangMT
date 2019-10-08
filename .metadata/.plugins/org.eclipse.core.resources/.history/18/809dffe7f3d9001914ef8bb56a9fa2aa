@@ -1,0 +1,37 @@
+import java.io.*;
+import java.net.*;
+public class Server {
+	private Socket socket = null;
+	private ServerSocket server = null;
+	private DataInputStream in = null;
+	private DataInputStream input = null;
+	private DataOutputStream out = null;
+	public Server(int port) {
+		try {
+			server = new ServerSocket(port);
+			socket = server.accept();
+			in = new DataInputStream(socket.getInputStream());
+			input = new DataInputStream(System.in);
+			out = new DataOutputStream(socket.getOutputStream());
+			String message = "";
+			String line = "";
+			while(!message.equals("End")) {
+				try {
+					message = in.readUTF();
+					System.out.println(message);
+					line = input.readLine();
+					out.writeUTF(line);
+				}
+				catch(IOException e) {
+					System.out.println(e);
+				}
+			}
+			
+		}
+		catch(IOException e) {
+			System.out.println(e);
+		}
+		
+		
+	}
+}
